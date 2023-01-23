@@ -1,0 +1,30 @@
+.container {
+    text-align: center;
+    width: 90vw;
+    max-width: 76rem;
+
+}
+
+.summaryWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    
+}
+
+.summary {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 350px;
+    height: 100px;
+  
+  
+}
