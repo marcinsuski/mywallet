@@ -6,30 +6,34 @@ import {
     TableHead,
     TableRow,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import ExpenseItem from "./ExpenseItem";
 
 const ExpenseList = () => {
     const { expenses } = useContext(AppContext);
 
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem("items"));
+        if (!items) return;
+    }, []);
+
     return (
-        <TableContainer  style={{
-            border: "1px solid rgb(207, 207, 207)",
-            borderRadius: "5px",
-            
-        }}>
-            <Table aria-label="simple table" style={{ }}>
-                <TableHead >
+        <TableContainer
+            style={{
+                border: "1px solid rgb(207, 207, 207)",
+                borderRadius: "5px",
+            }}
+        >
+            <Table aria-label="simple table" style={{}}>
+                <TableHead>
                     <TableRow>
                         {["Name", "Category", "Month", "Amount", " "].map(
                             (head) => (
                                 <TableCell
-                                style={{fontWeight: 'bold'}}
+                                    style={{ fontWeight: "bold" }}
                                     key={head}
-                                    align={
-                                        head === "Amount" ? "right" : ""
-                                    }
+                                    align={head === "Amount" ? "right" : "left"}
                                 >
                                     {head}
                                 </TableCell>
@@ -37,11 +41,10 @@ const ExpenseList = () => {
                         )}
                     </TableRow>
                 </TableHead>
-                <TableBody  >
+                <TableBody>
                     {expenses.map((expense) => {
                         return (
                             <ExpenseItem
-                          
                                 key={expense.id}
                                 id={expense.id}
                                 name={expense.name}
@@ -51,7 +54,6 @@ const ExpenseList = () => {
                             />
                         );
                     })}
-
                 </TableBody>
             </Table>
         </TableContainer>

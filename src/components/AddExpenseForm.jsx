@@ -1,6 +1,6 @@
 import { Button, FormControl, InputLabel, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./AddExpenseForm.module.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,7 +12,7 @@ const AddExpenseForm = () => {
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
     const [month, setMonth] = useState('');
-    const {dispatch} = useContext(AppContext);
+    const {dispatch, expenses} = useContext(AppContext);
     
 
 
@@ -31,7 +31,12 @@ const AddExpenseForm = () => {
             type: 'ADD_EXPENSE',
             payload: expense,
         })
+
     }
+
+    useEffect(() => {
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+      }, [expenses]);
 
     return (
         <Box component="form" onSubmit={onSubmit} className={classes.form}>

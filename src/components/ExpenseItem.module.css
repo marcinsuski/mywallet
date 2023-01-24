@@ -2,11 +2,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
 }
-
 
 .badge {
     font-weight: bold;
-    border-bottom: none;
+}
+
+.expense {
+    color: red;
+}
+
+.income {
+    color: green;
 }

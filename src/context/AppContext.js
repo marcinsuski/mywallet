@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 
 const AppReducer = (state, action) => {
+   
     switch (action.type) {
         case "ADD_EXPENSE":
             return {
@@ -17,44 +18,28 @@ const AppReducer = (state, action) => {
         case "SET_BUDGET":
             return {
                 ...state,
-                budget: [...state.budget, action.payload],
+                budget: action.payload,
             };
         default:
             return state;
     }
 };
 
+const budget = JSON.parse(localStorage.getItem("budget")) || 0;
+const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
 const initialState = {
-    budget: 2000,
-    expenses: [
-        {
-            id: 12,
-            name: "shopping",
-            amount: 150,
-            category: "home",
-            month: "january",
-        },
-        {
-            id: 13,
-            name: "Bitcoin",
-            amount: 200,
-            category: "investment",
-            month: "january",
-        },
-        {
-            id: 14,
-            name: "Car service",
-            amount: 80,
-            category: "Car",
-            month: "january",
-        },
-    ],
+    budget: budget,
+    expenses: [...expenses],
+
+
 };
 
 export const AppContext = createContext();
 
 export const AppProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
+
 
     return (
         <AppContext.Provider
