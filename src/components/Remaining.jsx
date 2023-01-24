@@ -1,12 +1,22 @@
-import React from 'react'
-import classes from '../App.module.css'
+import { Box } from "@mui/system";
+import React, { useContext } from "react";
+import './Remaining.css';
+import { AppContext } from "../context/AppContext";
 
 const Remaining = () => {
-  return (
-    <div className={classes.summary} style={{backgroundColor: '#BFE5B2', color: '#25431A'}}>
-       <span>Remaining: $1040</span>
-    </div>
-  )
-}
+    const { expenses, budget } = useContext(AppContext);
 
-export default Remaining
+    const totalExpenses = expenses.reduce((total, item) => {
+        return (total = total + item.amount);
+    }, 0);
+
+    const isPositive = totalExpenses > budget ? 'negative' : 'positive';
+
+    return (
+        <Box className={`summary ${isPositive}`}>
+            <span>Remaining: {budget - totalExpenses} zł</span>
+        </Box>
+    );
+};
+
+export default Remaining;

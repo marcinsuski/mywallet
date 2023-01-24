@@ -7,6 +7,8 @@ import ExpensesTotal from "./components/ExpensesTotal";
 import ExpenseList from "./components/ExpenseList";
 import AddExpenseForm from "./components/AddExpenseForm";
 import { AppProvider } from "./context/AppContext";
+import { FormControl } from "@mui/material";
+import SelectMonth from "./components/SelectMonth";
 
 const App = () => {
     return (
@@ -25,7 +27,10 @@ const App = () => {
                     </Box>
                 </Box>
                 {/* expenses */}
+                <Box className={classes.expenses}>
                 <h3 style={{ margin: "2rem 0", fontSize: "2rem" }}>Expenses</h3>
+                <SelectMonth />
+                </Box>
 
                 <Box>
                     <ExpenseList />

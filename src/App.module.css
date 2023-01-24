@@ -2,7 +2,6 @@
     text-align: center;
     width: 90vw;
     max-width: 76rem;
-
 }
 
 .summaryWrapper {
@@ -12,7 +11,14 @@
     margin-top: 2rem;
     gap: 1rem;
     flex-wrap: wrap;
-    
+}
+
+
+.expenses {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .summary {
@@ -25,6 +31,5 @@
     flex: 1;
     min-width: 350px;
     height: 100px;
-  
-  
 }
+

@@ -1,0 +1,22 @@
+.summary {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 350px;
+    height: 100px;
+}
+
+.positive {
+    background-color: #BFE5B2;
+    color: #006404;
+}
+
+.negative {
+    background-color: #FFBFBF;
+    color: #6F0000;
+}
+

@@ -1,5 +1,7 @@
 .form {
+    width: 380px;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
