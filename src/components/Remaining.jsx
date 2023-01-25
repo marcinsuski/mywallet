@@ -4,17 +4,21 @@ import './Remaining.css';
 import { AppContext } from "../context/AppContext";
 
 const Remaining = () => {
-    const { expenses, budget } = useContext(AppContext);
+    const { expenses, income, budget } = useContext(AppContext);
 
     const totalExpenses = expenses.reduce((total, item) => {
         return (total = total + item.amount);
     }, 0);
 
-    const isPositive = totalExpenses > budget ? 'negative' : 'positive';
+    const totalIncome = income.reduce((total, item) => {
+        return (total += item.amount)
+      }, 0)
+
+    const isPositive = totalExpenses > totalIncome ? 'negative' : 'positive';
 
     return (
         <Box className={`summary ${isPositive}`}>
-            <span>Remaining: {budget - totalExpenses} zł</span>
+            <span>Remaining: {totalIncome - totalExpenses} zł</span>
         </Box>
     );
 };

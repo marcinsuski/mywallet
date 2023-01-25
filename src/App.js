@@ -14,19 +14,31 @@ import ExpenseList from "./components/ExpenseList";
 import AddExpenseForm from "./components/AddExpenseForm";
 import { AppContext } from "./context/AppContext";
 import classes from "./App.module.css";
+import AddIncomeForm from "./components/AddIncome";
+import IncomeList from "./components/IncomeList";
+import Income from './components/Income'
 
 const App = () => {
     const [search, setSearch] = useState("");
     const [month, setMonth] = useState("");
-    const { expenses } = useContext(AppContext);
+    const { expenses, income } = useContext(AppContext);
 
-
-    const handleSearch = () => {
+    const handleSearchExpenses = () => {
         return expenses.filter(
             (expense) =>
                 expense.name.toLowerCase().includes(search) ||
                 expense.category.toLowerCase().includes(search) ||
                 expense.month.toLowerCase().includes(search)
+        );
+    };
+
+    
+    const handleSearchIncome = () => {
+        return income.filter(
+            (income) =>
+            income.name.toLowerCase().includes(search) ||
+            income.category.toLowerCase().includes(search) ||
+            income.month.toLowerCase().includes(search)
         );
     };
 
@@ -40,7 +52,8 @@ const App = () => {
 
                     {/* summaries */}
                     <Box className={classes.summaryWrapper}>
-                        <Budget />
+                        {/* <Budget /> */}
+                        <Income />
                         <Remaining />
                         <ExpensesTotal />
                     </Box>
@@ -90,7 +103,10 @@ const App = () => {
                     />
                 </Box>
                 <Box>
-                    <ExpenseList handleSearch={handleSearch} />
+                    <ExpenseList handleSearchExpenses={handleSearchExpenses} />
+                </Box>
+                <Box>
+                    <IncomeList handleSearchIncome={handleSearchIncome} />
                 </Box>
                 {/* Add expenses */}
                 <h3 style={{ margin: "2rem 0", fontSize: "2rem" }}>
@@ -99,6 +115,13 @@ const App = () => {
 
                 <Box>
                     <AddExpenseForm />
+                </Box>
+                {/* Add Income */}
+                <Box>
+                    <h3 style={{ margin: "2rem 0", fontSize: "2rem" }}>
+                        Add Income
+                    </h3>
+                    <AddIncomeForm />
                 </Box>
             </Box>
         </>

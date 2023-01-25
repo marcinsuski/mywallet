@@ -1,0 +1,17 @@
+.expenseItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    font-weight: bold;
+}
+
+.expense {
+    color: red;
+}
+
+.income {
+    color: green;
+}

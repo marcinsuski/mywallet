@@ -15,6 +15,18 @@ const AppReducer = (state, action) => {
                     (expense) => expense.id !== action.payload
                 ),
             };
+            case "ADD_INCOME":
+                return {
+                    ...state,
+                    income: [...state.income, action.payload],
+                };
+            case "DELETE_INCOME":
+                return {
+                    ...state,
+                    income: state.income.filter(
+                        (income) => income.id !== action.payload
+                    ),
+                };
         case "SET_BUDGET":
             return {
                 ...state,
@@ -25,10 +37,12 @@ const AppReducer = (state, action) => {
     }
 };
 
+const income = JSON.parse(localStorage.getItem("income")) || 0;
 const budget = JSON.parse(localStorage.getItem("budget")) || 0;
 const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
 const initialState = {
+    income: [...income],
     budget: budget,
     expenses: [...expenses],
 
@@ -39,15 +53,16 @@ export const AppContext = createContext();
 
 export const AppProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
-    const [search, setSearch] = useState("");
+
 
     return (
         <AppContext.Provider
             value={{
+                income: state.income,
                 budget: state.budget,
                 expenses: state.expenses,
                 dispatch,
-                setSearch,
+
             }}
         >
             <div>{props.children}</div>

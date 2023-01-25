@@ -7,16 +7,16 @@ import {
     TableRow,
 } from "@mui/material";
 import React from "react";
+import IncomeItem from "./IncomeItem";
 
-import ExpenseItem from "./ExpenseItem";
-
-const ExpenseList = ({handleSearchExpenses }) => {
+const IncomeList = ({handleSearchIncome }) => {
     
     return (
         <TableContainer
             style={{
                 border: "1px solid rgb(207, 207, 207)",
                 borderRadius: "5px",
+                marginTop: '1rem'
             }}
         >
             <Table aria-label="simple table" style={{}}>
@@ -36,15 +36,15 @@ const ExpenseList = ({handleSearchExpenses }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {handleSearchExpenses().map((expense) => {
+                    {handleSearchIncome().map((income) => {
                         return (
-                            <ExpenseItem
-                                key={expense.id}
-                                id={expense.id}
-                                name={expense.name}
-                                amount={expense.amount}
-                                category={expense.category}
-                                month={expense.month}
+                            <IncomeItem
+                                key={income.id}
+                                id={income.id}
+                                name={income.name}
+                                amount={income.amount}
+                                category={income.category}
+                                month={income.month}
                             />
                         );
                     })}
@@ -54,4 +54,4 @@ const ExpenseList = ({handleSearchExpenses }) => {
     );
 };
 
-export default ExpenseList;
+export default IncomeList;
