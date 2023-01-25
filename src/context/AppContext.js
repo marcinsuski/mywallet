@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 const AppReducer = (state, action) => {
    
@@ -39,7 +39,7 @@ export const AppContext = createContext();
 
 export const AppProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
-
+    const [search, setSearch] = useState("");
 
     return (
         <AppContext.Provider
@@ -47,6 +47,7 @@ export const AppProvider = (props) => {
                 budget: state.budget,
                 expenses: state.expenses,
                 dispatch,
+                setSearch,
             }}
         >
             <div>{props.children}</div>

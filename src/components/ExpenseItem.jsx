@@ -14,6 +14,8 @@ const ExpenseItem = ({ id, name, category, amount, month }) => {
         });
     };
 
+    
+
     return (
         <TableRow>
             <TableCell style={{ padding: "0 0 0 1rem" }}>{name}</TableCell>

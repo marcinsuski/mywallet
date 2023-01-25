@@ -6,18 +6,12 @@ import {
     TableHead,
     TableRow,
 } from "@mui/material";
-import React, { useContext, useEffect } from "react";
-import { AppContext } from "../context/AppContext";
+import React from "react";
+
 import ExpenseItem from "./ExpenseItem";
 
-const ExpenseList = () => {
-    const { expenses } = useContext(AppContext);
-
-    useEffect(() => {
-        const items = JSON.parse(localStorage.getItem("items"));
-        if (!items) return;
-    }, []);
-
+const ExpenseList = ({handleSearch, }) => {
+    
     return (
         <TableContainer
             style={{
@@ -42,7 +36,7 @@ const ExpenseList = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {expenses.map((expense) => {
+                    {handleSearch().map((expense) => {
                         return (
                             <ExpenseItem
                                 key={expense.id}

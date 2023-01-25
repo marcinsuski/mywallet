@@ -21,6 +21,14 @@
     align-items: center;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+    margin-bottom: 2rem;
+
+}
+
 .summary {
     font-weight: bold;
     display: flex;
