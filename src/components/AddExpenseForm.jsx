@@ -5,38 +5,49 @@ import classes from "./AddExpenseForm.module.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { AppContext } from "../context/AppContext";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const AddExpenseForm = () => {
-    const [name, setName] = useState('');
-    const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState('');
-    const [month, setMonth] = useState('');
-    const {dispatch, expenses} = useContext(AppContext);
-    
-
-
+    const [name, setName] = useState("");
+    const [amount, setAmount] = useState("");
+    const [category, setCategory] = useState("other");
+    const [month, setMonth] = useState("");
+    const [transactionType, setTransactionType] = useState('expense')
+    const { dispatch, expenses } = useContext(AppContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+
         const expense = {
             id: uuidv4(),
             name,
             amount: parseInt(amount),
             category,
             month,
+            transactionType,
         };
 
-        dispatch({
-            type: 'ADD_EXPENSE',
-            payload: expense,
-        })
+        const income = {
+            id: uuidv4(),
+            name,
+            amount: parseInt(amount),
+            category,
+            month,
+            transactionType,
+        };
 
-    }
+        let transaction = (transactionType === 'income' ? income : expense );
+
+        dispatch({
+            type: "ADD_EXPENSE",
+            payload: transaction,
+        });
+    };
 
     useEffect(() => {
-        localStorage.setItem('expenses', JSON.stringify(expenses));
-      }, [expenses]);
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+    }, [expenses, month]);
 
     return (
         <Box component="form" onSubmit={onSubmit} className={classes.form}>
@@ -47,7 +58,9 @@ const AddExpenseForm = () => {
                 value={name}
                 variant="outlined"
                 sx={{ width: "8.5rem" }}
-                onChange={(e) => {setName(e.target.value)}}
+                onChange={(e) => {
+                    setName(e.target.value);
+                }}
             />
             <TextField
                 required
@@ -56,9 +69,27 @@ const AddExpenseForm = () => {
                 variant="outlined"
                 sx={{ width: "8.5rem" }}
                 value={amount}
-                onChange={(e) => {setAmount(e.target.value)}}
+                onChange={(e) => {
+                    setAmount(e.target.value);
+                }}
             />
-            <FormControl >
+            <FormControl>
+                <InputLabel id="category">Category</InputLabel>
+                <Select
+                    required
+                    id="transaction"
+                    label="income-expense"
+                    variant="outlined"
+                    defaultValue={transactionType}
+                    sx={{ width: "8.5rem" }}
+                    value={transactionType}
+                    onChange={(e) => setTransactionType(e.target.value)}
+                >
+                    <MenuItem value={"income"}>Income</MenuItem>
+                    <MenuItem value={"expense"}>Expense</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl>
                 <InputLabel id="category">Category</InputLabel>
                 <Select
                     required
@@ -68,7 +99,9 @@ const AddExpenseForm = () => {
                     defaultValue={category}
                     sx={{ width: "8.5rem" }}
                     value={category}
-                    onChange={(e) => {setCategory(e.target.value)}}
+                    onChange={(e) => {
+                        setCategory(e.target.value);
+                    }}
                 >
                     <MenuItem value={"home"}>Home</MenuItem>
                     <MenuItem value={"education"}>Education</MenuItem>
@@ -83,36 +116,38 @@ const AddExpenseForm = () => {
                     <MenuItem value={"hobby"}>Hobby</MenuItem>
                     <MenuItem value={"gifts"}>Gifts</MenuItem>
                     <MenuItem value={"pets"}>Pets</MenuItem>
-                    <MenuItem value={"other_1"}>Other 1</MenuItem>
-                    <MenuItem value={"other_2"}>Other 2</MenuItem>
+                    <MenuItem value={"other"}>Other</MenuItem>
+                    <MenuItem value={"other2"}>Other 2</MenuItem>
                 </Select>
             </FormControl>
             <FormControl>
-            <InputLabel id="month">Month</InputLabel>
-            <Select
-                required
-                id="month"
-                label="month"
-                defaultValue={"january"}
-                variant="outlined"
-                sx={{ width: "8.5rem" }}
-                value={month}
-                onChange={(e) => {setMonth(e.target.value)}}
-            >
-                <MenuItem value={"january"}>january</MenuItem>
-                <MenuItem value={"february"}>february</MenuItem>
-                <MenuItem value={"march"}>march</MenuItem>
-                <MenuItem value={"april"}>april</MenuItem>
-                <MenuItem value={"may"}>may</MenuItem>
-                <MenuItem value={"june"}>june</MenuItem>
-                <MenuItem value={"july"}>july</MenuItem>
-                <MenuItem value={"august"}>august</MenuItem>
-                <MenuItem value={"september"}>september</MenuItem>
-                <MenuItem value={"october"}>october</MenuItem>
-                <MenuItem value={"november"}>november</MenuItem>
-                <MenuItem value={"december"}>december</MenuItem>
-            </Select>
-        </FormControl>
+                <InputLabel id="month">Month</InputLabel>
+                <Select
+                    required
+                    id="month"
+                    label="month"
+                    defaultValue={"january"}
+                    variant="outlined"
+                    sx={{ width: "8.5rem" }}
+                    value={month}
+                    onChange={(e) => {
+                        setMonth(e.target.value);
+                    }}
+                >
+                    <MenuItem value={"january"}>january</MenuItem>
+                    <MenuItem value={"february"}>february</MenuItem>
+                    <MenuItem value={"march"}>march</MenuItem>
+                    <MenuItem value={"april"}>april</MenuItem>
+                    <MenuItem value={"may"}>may</MenuItem>
+                    <MenuItem value={"june"}>june</MenuItem>
+                    <MenuItem value={"july"}>july</MenuItem>
+                    <MenuItem value={"august"}>august</MenuItem>
+                    <MenuItem value={"september"}>september</MenuItem>
+                    <MenuItem value={"october"}>october</MenuItem>
+                    <MenuItem value={"november"}>november</MenuItem>
+                    <MenuItem value={"december"}>december</MenuItem>
+                </Select>
+            </FormControl>
 
             <Button
                 type="submit"

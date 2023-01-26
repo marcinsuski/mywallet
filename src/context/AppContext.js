@@ -15,38 +15,39 @@ const AppReducer = (state, action) => {
                     (expense) => expense.id !== action.payload
                 ),
             };
-            case "ADD_INCOME":
-                return {
-                    ...state,
-                    income: [...state.income, action.payload],
-                };
-            case "DELETE_INCOME":
-                return {
-                    ...state,
-                    income: state.income.filter(
-                        (income) => income.id !== action.payload
-                    ),
-                };
-        case "SET_BUDGET":
-            return {
-                ...state,
-                budget: action.payload,
-            };
+            // case "ADD_INCOME":
+            //     return {
+            //         ...state,
+            //         income: [...state.income, action.payload],
+            //     };
+            // case "DELETE_INCOME":
+            //     return {
+            //         ...state,
+            //         income: state.income.filter(
+            //             (income) => income.id !== action.payload
+            //         ),
+            //     };
         default:
             return state;
     }
 };
 
-const income = JSON.parse(localStorage.getItem("income")) || 0;
-const budget = JSON.parse(localStorage.getItem("budget")) || 0;
+const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"
+];
+
+let date = monthNames[new Date().getMonth()]
+console.log(date)
+
+
+const income = JSON.parse(localStorage.getItem("income")) || [];
 const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+const month = JSON.parse(localStorage.getItem("month")) || date;
 
 const initialState = {
-    income: [...income],
-    budget: budget,
+    income: [...income],    
     expenses: [...expenses],
-
-
+    month: month,
 };
 
 export const AppContext = createContext();
@@ -59,8 +60,8 @@ export const AppProvider = (props) => {
         <AppContext.Provider
             value={{
                 income: state.income,
-                budget: state.budget,
                 expenses: state.expenses,
+                month: month,
                 dispatch,
 
             }}

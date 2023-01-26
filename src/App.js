@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     FormControl,
     InputLabel,
@@ -7,7 +7,6 @@ import {
     TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import Budget from "./components/Budget";
 import Remaining from "./components/Remaining";
 import ExpensesTotal from "./components/ExpensesTotal";
 import ExpenseList from "./components/ExpenseList";
@@ -16,11 +15,18 @@ import { AppContext } from "./context/AppContext";
 import classes from "./App.module.css";
 import AddIncomeForm from "./components/AddIncome";
 import IncomeList from "./components/IncomeList";
-import Income from './components/Income'
+import Income from "./components/Income";
 
 const App = () => {
+    // prettier-ignore
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"
+];
+
+    let date = monthNames[new Date().getMonth()];
+
     const [search, setSearch] = useState("");
-    const [month, setMonth] = useState("");
+    const [month, setMonth] = useState(date);
     const { expenses, income } = useContext(AppContext);
 
     const handleSearchExpenses = () => {
@@ -32,15 +38,18 @@ const App = () => {
         );
     };
 
-    
     const handleSearchIncome = () => {
         return income.filter(
             (income) =>
-            income.name.toLowerCase().includes(search) ||
-            income.category.toLowerCase().includes(search) ||
-            income.month.toLowerCase().includes(search)
+                income.name.toLowerCase().includes(search) ||
+                income.category.toLowerCase().includes(search) ||
+                income.month.toLowerCase().includes(search)
         );
     };
+
+    useEffect(() => {
+        localStorage.setItem("month", JSON.stringify(month) || date);
+    }, [month, date]);
 
     return (
         <>
@@ -70,8 +79,9 @@ const App = () => {
                             required
                             id="month"
                             label="month"
-                            defaultValue={"january"}
                             variant="outlined"
+                            value={month}
+                            defaultValue={month}
                             sx={{ width: "8.5rem" }}
                             onChange={(e) => {
                                 setSearch(e.target.value);
@@ -117,12 +127,12 @@ const App = () => {
                     <AddExpenseForm />
                 </Box>
                 {/* Add Income */}
-                <Box>
+                {/* <Box>
                     <h3 style={{ margin: "2rem 0", fontSize: "2rem" }}>
                         Add Income
                     </h3>
                     <AddIncomeForm />
-                </Box>
+                </Box> */}
             </Box>
         </>
     );
