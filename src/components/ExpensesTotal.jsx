@@ -1,14 +1,22 @@
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import classes from "../App.module.css";
 import { AppContext } from "../context/AppContext";
+import AddExpenseForm from "./AddExpenseForm";
 
 const ExpensesTotal = () => {
     const { expenses } = useContext(AppContext);
+    const [showModal, setShowModal] = useState(false);
+    
     const totalExpenses = expenses.reduce((total, item) => {
         return (total += item.amount);
     }, 0);
+
+    const showModalHandler = () =>  {
+      setShowModal(!showModal)
+    }
+
     return (
         <div
             className={classes.summary}
@@ -29,10 +37,14 @@ const ExpensesTotal = () => {
                         backgroundColor: "#FF0000",
                     }}
                     variant="contained"
+                    onClick={showModalHandler}
                 >
                     Add expense
                 </Button>
             </Box>
+            <Box>
+                   {showModal && <AddExpenseForm  showModalHandler={showModalHandler}/>}
+             </Box>
         </div>
     );
 };

@@ -168,6 +168,7 @@ const App = () => {
                    {showExpenses && <ExpenseList handleSearchExpenses={handleSearchExpenses} />}
                     {!showExpenses && <IncomeList handleSearchIncome={handleSearchIncome} />}
                 </Box>
+
                 <Box>
                     {/* <AddExpenseForm /> */}
                 </Box>

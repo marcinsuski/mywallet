@@ -1,18 +1,24 @@
-import { Button, FormControl, InputLabel, TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
-import classes from "./AddExpenseForm.module.css";
+import {
+    Button,
+    FormControl,
+    Icon,
+    InputLabel,
+    TextField,
+} from "@mui/material";
+import { Box } from "@mui/system";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { AppContext } from "../context/AppContext";
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import { v4 as uuidv4 } from "uuid";
+import classes from "./AddExpenseForm.module.css";
+import { AppContext } from "../context/AppContext";
 
-const AddExpenseForm = () => {
+const AddExpenseForm = ({ showModalHandler }) => {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("other");
     const [month, setMonth] = useState("");
-    const [transactionType, setTransactionType] = useState("expense");
     const { dispatch, expenses } = useContext(AppContext);
 
     const onSubmit = (e) => {
@@ -24,13 +30,14 @@ const AddExpenseForm = () => {
             amount: parseInt(amount),
             category,
             month,
-            transactionType,
         };
 
         dispatch({
             type: "ADD_EXPENSE",
             payload: expense,
         });
+
+        showModalHandler();
     };
 
     useEffect(() => {
@@ -39,12 +46,36 @@ const AddExpenseForm = () => {
 
     return (
         <>
-            <Box className={classes.form_overlay}></Box>
+            <Box
+                className={classes.form_overlay}
+                onClick={showModalHandler}
+            ></Box>
             <Box component="form" onSubmit={onSubmit} className={classes.form}>
-                <Box sx={{ margin: "1rem 0" }}>
+                <Box
+                    sx={{
+                        width: "100%",
+                        margin: "1rem 0",
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}
+                >
                     <h3 style={{ margin: "0", fontSize: "2rem" }}>
                         Add Expense
                     </h3>
+                    <Icon
+                        component="button"
+                        style={{
+                            marginRight: "0.5rem",
+                            border: "none",
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                        }}
+                    >
+                        <HighlightOffOutlinedIcon
+                            // color="error"
+                            onClick={showModalHandler}
+                        />
+                    </Icon>
                 </Box>
                 <TextField
                     required
@@ -114,18 +145,20 @@ const AddExpenseForm = () => {
                             setMonth(e.target.value);
                         }}
                     >
-                        <MenuItem value={"january"}>january</MenuItem>
-                        <MenuItem value={"february"}>february</MenuItem>
-                        <MenuItem value={"march"}>march</MenuItem>
-                        <MenuItem value={"april"}>april</MenuItem>
-                        <MenuItem value={"may"}>may</MenuItem>
-                        <MenuItem value={"june"}>june</MenuItem>
-                        <MenuItem value={"july"}>july</MenuItem>
-                        <MenuItem value={"august"}>august</MenuItem>
-                        <MenuItem value={"september"}>september</MenuItem>
-                        <MenuItem value={"october"}>october</MenuItem>
-                        <MenuItem value={"november"}>november</MenuItem>
-                        <MenuItem value={"december"}>december</MenuItem>
+                              <MenuItem value={"january"}>january</MenuItem>
+                                <MenuItem value={"february"}>february</MenuItem>
+                                <MenuItem value={"march"}>march</MenuItem>
+                                <MenuItem value={"april"}>april</MenuItem>
+                                <MenuItem value={"may"}>may</MenuItem>
+                                <MenuItem value={"june"}>june</MenuItem>
+                                <MenuItem value={"july"}>july</MenuItem>
+                                <MenuItem value={"august"}>august</MenuItem>
+                                <MenuItem value={"september"}>
+                                    september
+                                </MenuItem>
+                                <MenuItem value={"october"}>october</MenuItem>
+                                <MenuItem value={"november"}>november</MenuItem>
+                                <MenuItem value={"december"}>december</MenuItem>
                     </Select>
                 </FormControl>
 
