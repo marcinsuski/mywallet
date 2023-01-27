@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 
 const AppReducer = (state, action) => {
    
@@ -15,18 +15,18 @@ const AppReducer = (state, action) => {
                     (expense) => expense.id !== action.payload
                 ),
             };
-            // case "ADD_INCOME":
-            //     return {
-            //         ...state,
-            //         income: [...state.income, action.payload],
-            //     };
-            // case "DELETE_INCOME":
-            //     return {
-            //         ...state,
-            //         income: state.income.filter(
-            //             (income) => income.id !== action.payload
-            //         ),
-            //     };
+            case "ADD_INCOME":
+                return {
+                    ...state,
+                    income: [...state.income, action.payload],
+                };
+            case "DELETE_INCOME":
+                return {
+                    ...state,
+                    income: state.income.filter(
+                        (income) => income.id !== action.payload
+                    ),
+                };
         default:
             return state;
     }
@@ -37,7 +37,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 let date = monthNames[new Date().getMonth()]
-console.log(date)
+
 
 
 const income = JSON.parse(localStorage.getItem("income")) || [];

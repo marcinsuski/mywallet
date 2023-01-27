@@ -1,10 +1,10 @@
 import { Box } from "@mui/system";
 import React, { useContext } from "react";
-import './Remaining.css';
+import './Balance.css';
 import { AppContext } from "../context/AppContext";
 
 const Remaining = () => {
-    const { expenses, income, budget } = useContext(AppContext);
+    const { expenses, income } = useContext(AppContext);
 
     const totalExpenses = expenses.reduce((total, item) => {
         return (total = total + item.amount);
@@ -18,7 +18,7 @@ const Remaining = () => {
 
     return (
         <Box className={`summary ${isPositive}`}>
-            <span>Remaining: {totalIncome - totalExpenses} zł</span>
+            <span>Balance: {totalIncome - totalExpenses} zł</span>
         </Box>
     );
 };

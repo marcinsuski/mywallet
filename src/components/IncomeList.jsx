@@ -13,11 +13,10 @@ const IncomeList = ({handleSearchIncome }) => {
     
     return (
         <TableContainer
-            style={{
-                border: "1px solid rgb(207, 207, 207)",
-                borderRadius: "5px",
-                marginTop: '1rem'
-            }}
+        style={{
+            border: "1px solid rgb(207, 207, 207)",
+            borderRadius: "5px",
+        }}
         >
             <Table aria-label="simple table" style={{}}>
                 <TableHead>

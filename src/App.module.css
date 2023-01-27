@@ -1,6 +1,6 @@
 .container {
     text-align: center;
-    width: 90vw;
+    width: 95vw;
     max-width: 76rem;
 }
 
@@ -13,20 +13,19 @@
     flex-wrap: wrap;
 }
 
-
-.expenses {
+.toolbar {
+    margin: 2rem 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: space-between;
 }
 
-.search {
+.toolbar__items {
     display: flex;
     justify-content: center;
-    width: 100%; 
-    margin-bottom: 2rem;
-
+    gap: 1rem;
+    width: 100%;
 }
 
 .summary {

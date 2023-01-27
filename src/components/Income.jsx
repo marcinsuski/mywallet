@@ -17,17 +17,22 @@ const Budget = () => {
                 <Box>
                     <span>Income: {totalIncome} zł</span>
                 </Box>
-                {/* <Button
-                    sx={{
-                        fontWeight: "bold",
-                        width: "6rem",
-                        padding: "0.7rem 0.5rem",
-                        backgroundColor: "#264ede",
-                    }}
-                    variant="contained"
-                >
-                    Edit
-                </Button> */}
+                    {/* Add income */}
+                    <Button
+                            sx={{
+                                ':hover': {
+                                    bgcolor: '#18AA00', 
+                                    color: 'white',
+                                  },
+                                fontWeight: "bold",
+                                // width: "10rem",
+                                // padding: "0.7rem 0.5rem",
+                                backgroundColor: "#1CCA00",
+                            }}
+                            variant="contained"
+                        >
+                            Add income
+                        </Button>
             </Box>
         </div>
     );

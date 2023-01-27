@@ -5,17 +5,14 @@ import classes from "./AddExpenseForm.module.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { AppContext } from "../context/AppContext";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const AddIncomeForm = () => {
-    const [name, setName] = useState('');
-    const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState('');
-    const [month, setMonth] = useState('');
-    const {dispatch, income} = useContext(AppContext);
-    
-
-
+    const [name, setName] = useState("");
+    const [amount, setAmount] = useState("");
+    const [category, setCategory] = useState("");
+    const [month, setMonth] = useState("");
+    const { dispatch, income } = useContext(AppContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -28,18 +25,22 @@ const AddIncomeForm = () => {
         };
 
         dispatch({
-            type: 'ADD_INCOME',
+            type: "ADD_INCOME",
             payload: income,
-        })
-
-    }
+        });
+    };
 
     useEffect(() => {
-        localStorage.setItem('income', JSON.stringify(income));
-      }, [income]);
+        localStorage.setItem("income", JSON.stringify(income));
+    }, [income]);
 
     return (
         <Box component="form" onSubmit={onSubmit} className={classes.form}>
+            <Box sx={{ margin: "1rem 0" }}>
+                <h3 style={{ margin: "2rem 0", fontSize: "2rem" }}>
+                    Add Income
+                </h3>
+            </Box>
             <TextField
                 required
                 id="name"
@@ -47,7 +48,9 @@ const AddIncomeForm = () => {
                 value={name}
                 variant="outlined"
                 sx={{ width: "8.5rem" }}
-                onChange={(e) => {setName(e.target.value)}}
+                onChange={(e) => {
+                    setName(e.target.value);
+                }}
             />
             <TextField
                 required
@@ -56,9 +59,11 @@ const AddIncomeForm = () => {
                 variant="outlined"
                 sx={{ width: "8.5rem" }}
                 value={amount}
-                onChange={(e) => {setAmount(e.target.value)}}
+                onChange={(e) => {
+                    setAmount(e.target.value);
+                }}
             />
-            <FormControl >
+            <FormControl>
                 <InputLabel id="category">Category</InputLabel>
                 <Select
                     required
@@ -68,7 +73,9 @@ const AddIncomeForm = () => {
                     defaultValue={category}
                     sx={{ width: "8.5rem" }}
                     value={category}
-                    onChange={(e) => {setCategory(e.target.value)}}
+                    onChange={(e) => {
+                        setCategory(e.target.value);
+                    }}
                 >
                     <MenuItem value={"Job"}>Job</MenuItem>
                     <MenuItem value={"freelance"}>Freelance</MenuItem>
@@ -80,35 +87,41 @@ const AddIncomeForm = () => {
                 </Select>
             </FormControl>
             <FormControl>
-            <InputLabel id="month">Month</InputLabel>
-            <Select
-                required
-                id="month"
-                label="month"
-                defaultValue={"january"}
-                variant="outlined"
-                sx={{ width: "8.5rem" }}
-                value={month}
-                onChange={(e) => {setMonth(e.target.value)}}
-            >
-                <MenuItem value={"january"}>january</MenuItem>
-                <MenuItem value={"february"}>february</MenuItem>
-                <MenuItem value={"march"}>march</MenuItem>
-                <MenuItem value={"april"}>april</MenuItem>
-                <MenuItem value={"may"}>may</MenuItem>
-                <MenuItem value={"june"}>june</MenuItem>
-                <MenuItem value={"july"}>july</MenuItem>
-                <MenuItem value={"august"}>august</MenuItem>
-                <MenuItem value={"september"}>september</MenuItem>
-                <MenuItem value={"october"}>october</MenuItem>
-                <MenuItem value={"november"}>november</MenuItem>
-                <MenuItem value={"december"}>december</MenuItem>
-            </Select>
-        </FormControl>
+                <InputLabel id="month">Month</InputLabel>
+                <Select
+                    required
+                    id="month"
+                    label="month"
+                    defaultValue={"january"}
+                    variant="outlined"
+                    sx={{ width: "8.5rem" }}
+                    value={month}
+                    onChange={(e) => {
+                        setMonth(e.target.value);
+                    }}
+                >
+                    <MenuItem value={"january"}>january</MenuItem>
+                    <MenuItem value={"february"}>february</MenuItem>
+                    <MenuItem value={"march"}>march</MenuItem>
+                    <MenuItem value={"april"}>april</MenuItem>
+                    <MenuItem value={"may"}>may</MenuItem>
+                    <MenuItem value={"june"}>june</MenuItem>
+                    <MenuItem value={"july"}>july</MenuItem>
+                    <MenuItem value={"august"}>august</MenuItem>
+                    <MenuItem value={"september"}>september</MenuItem>
+                    <MenuItem value={"october"}>october</MenuItem>
+                    <MenuItem value={"november"}>november</MenuItem>
+                    <MenuItem value={"december"}>december</MenuItem>
+                </Select>
+            </FormControl>
 
             <Button
                 type="submit"
                 sx={{
+                    ":hover": {
+                        bgcolor: "#1F41BC",
+                        color: "white",
+                    },
                     fontWeight: "bold",
                     width: "6rem",
                     padding: "0.7rem 0.5rem",
