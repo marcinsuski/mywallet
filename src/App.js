@@ -29,6 +29,9 @@ const App = () => {
     const [search, setSearch] = useState("");
     const [month, setMonth] = useState(date);
     const { expenses, income } = useContext(AppContext);
+    const [monthlyIncome, setMonthlyIncome] = useState(0);
+    const [monthlyExpenses, setMonthlyExpenses] = useState(0);
+    const [monthlyBalance, setMonthlyBalance] = useState(0);
 
     const handleSearchExpenses = () => {
         return expenses.filter(
@@ -52,14 +55,34 @@ const App = () => {
         localStorage.setItem("month", JSON.stringify(month) || date);
     }, [month, date]);
 
-
     const showIncomeHandler = () => {
         setShowExpenses(false);
-
-    }
+    };
     const showExpensesHandler = () => {
         setShowExpenses(true);
-    }
+    };
+
+    useEffect(() => {
+        setMonthlyIncome(
+            income
+                .map((item) =>
+                    item.month === month.toLowerCase() ? item.amount : 0
+                )
+                .reduce((prev, next) => prev + next)
+        );
+
+        setMonthlyExpenses(
+            expenses
+                .map((item) =>
+                    item.month === month.toLowerCase() ? item.amount : 0
+                )
+                .reduce((prev, next) => prev + next)
+        );
+
+        setMonthlyBalance(monthlyIncome - monthlyExpenses);
+    }, [month]);
+
+
 
     return (
         <>
@@ -72,9 +95,9 @@ const App = () => {
                     {/* summaries */}
                     <Box className={classes.summaryWrapper}>
                         {/* <Budget /> */}
-                        <Income />
-                        <Balance />
-                        <ExpensesTotal />
+                        <Income monthlyIncome={monthlyIncome} />
+                        <Balance  monthlyIncome={monthlyIncome} monthlyExpenses={monthlyExpenses}/>
+                        <ExpensesTotal monthlyExpenses={monthlyExpenses} />
                     </Box>
                 </Box>
                 {/* expenses */}
@@ -95,7 +118,7 @@ const App = () => {
                                 id="month"
                                 label="month"
                                 variant="outlined"
-                                value=''
+                                value={month}
                                 defaultValue={month}
                                 sx={{ width: "8.5rem" }}
                                 onChange={(e) => {
@@ -127,18 +150,25 @@ const App = () => {
                     </h3>
                 </Box>
                 <Box>
-                    <Box sx={{display: "flex", width: '100%', justifyContent: 'space-between', margin: '0.5rem 0'}}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            width: "100%",
+                            justifyContent: "space-between",
+                            margin: "0.5rem 0",
+                        }}
+                    >
                         <Button
                             type="submit"
                             sx={{
                                 ":hover": {
-                                    backgroundColor: 'transparent',
+                                    backgroundColor: "transparent",
                                     color: "black",
                                 },
                                 fontWeight: "bold",
                                 width: "6rem",
                                 padding: "0.7rem 0.5rem",
-                                margin: '0 1rem'
+                                margin: "0 1rem",
                             }}
                             variant="text"
                             onClick={showIncomeHandler}
@@ -149,32 +179,32 @@ const App = () => {
                             type="submit"
                             sx={{
                                 ":hover": {
-                                    backgroundColor: 'transparent',
+                                    backgroundColor: "transparent",
                                     color: "black",
                                 },
                                 fontWeight: "bold",
                                 width: "6rem",
                                 padding: "0.7rem 0.5rem",
-                                margin: '0 1rem'
+                                margin: "0 1rem",
                             }}
                             variant="text"
                             onClick={showExpensesHandler}
                         >
                             Expenses
                         </Button>
-
-
                     </Box>
-                   {showExpenses && <ExpenseList handleSearchExpenses={handleSearchExpenses} />}
-                    {!showExpenses && <IncomeList handleSearchIncome={handleSearchIncome} />}
+                    {showExpenses && (
+                        <ExpenseList
+                            handleSearchExpenses={handleSearchExpenses}
+                        />
+                    )}
+                    {!showExpenses && (
+                        <IncomeList handleSearchIncome={handleSearchIncome} />
+                    )}
                 </Box>
 
-                <Box>
-                    {/* <AddExpenseForm /> */}
-                </Box>
-                <Box>
-                    {/* <AddIncomeForm /> */}
-                </Box>
+                <Box>{/* <AddExpenseForm /> */}</Box>
+                <Box>{/* <AddIncomeForm /> */}</Box>
             </Box>
         </>
     );

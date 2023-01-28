@@ -36,13 +36,11 @@ const AddExpenseForm = ({ showModalHandler }) => {
             type: "ADD_EXPENSE",
             payload: expense,
         });
-
+        
         showModalHandler();
     };
+    
 
-    useEffect(() => {
-        localStorage.setItem("expenses", JSON.stringify(expenses));
-    }, [expenses, month]);
 
     return (
         <>
