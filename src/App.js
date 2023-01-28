@@ -32,6 +32,8 @@ const App = () => {
     const [monthlyIncome, setMonthlyIncome] = useState(0);
     const [monthlyExpenses, setMonthlyExpenses] = useState(0);
     const [monthlyBalance, setMonthlyBalance] = useState(0);
+    const [activeExp, setActiveExp] = useState(true);
+    const [activeInc, setActiveInc] = useState(false);
 
     const handleSearchExpenses = () => {
         return expenses.filter(
@@ -56,9 +58,13 @@ const App = () => {
     }, [month, date]);
 
     const showIncomeHandler = () => {
+        setActiveInc(true);
+        setActiveExp(false);
         setShowExpenses(false);
     };
     const showExpensesHandler = () => {
+        setActiveExp(true);
+        setActiveInc(false);
         setShowExpenses(true);
     };
 
@@ -82,8 +88,6 @@ const App = () => {
         setMonthlyBalance(monthlyIncome - monthlyExpenses);
     }, [month]);
 
-
-
     return (
         <>
             <Box>
@@ -96,7 +100,10 @@ const App = () => {
                     <Box className={classes.summaryWrapper}>
                         {/* <Budget /> */}
                         <Income monthlyIncome={monthlyIncome} />
-                        <Balance  monthlyIncome={monthlyIncome} monthlyExpenses={monthlyExpenses}/>
+                        <Balance
+                            monthlyIncome={monthlyIncome}
+                            monthlyExpenses={monthlyExpenses}
+                        />
                         <ExpensesTotal monthlyExpenses={monthlyExpenses} />
                     </Box>
                 </Box>
@@ -106,8 +113,8 @@ const App = () => {
                         {/* search */}
                         <TextField
                             variant="outlined"
-                            label="Search for name or category"
-                            style={{ width: "14rem" }}
+                            label="Search for name/category"
+                            style={{ width: "11rem" }}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         {/* Choose Month */}
@@ -149,50 +156,33 @@ const App = () => {
                         Expenses
                     </h3>
                 </Box>
-                <Box>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            width: "100%",
-                            justifyContent: "space-between",
-                            margin: "0.5rem 0",
-                        }}
-                    >
-                        <Button
+
+                <Box className={classes.table__header}>
+                    <Box>
+                        <button
+                            className={classes.table__button}
                             type="submit"
-                            sx={{
-                                ":hover": {
-                                    backgroundColor: "transparent",
-                                    color: "black",
-                                },
-                                fontWeight: "bold",
-                                width: "6rem",
-                                padding: "0.7rem 0.5rem",
-                                margin: "0 1rem",
-                            }}
-                            variant="text"
                             onClick={showIncomeHandler}
+                            style={{ backgroundColor: activeInc ? "#bfe5b2" : "#dddddd" }}
                         >
                             Income
-                        </Button>
-                        <Button
+                        </button>
+                    </Box>
+                    {/* <Box
+                                className={classes.table__header_decorator}
+                            ></Box> */}
+                    <Box>
+                        <button
+                            className={classes.table__button}
                             type="submit"
-                            sx={{
-                                ":hover": {
-                                    backgroundColor: "transparent",
-                                    color: "black",
-                                },
-                                fontWeight: "bold",
-                                width: "6rem",
-                                padding: "0.7rem 0.5rem",
-                                margin: "0 1rem",
-                            }}
-                            variant="text"
                             onClick={showExpensesHandler}
+                            style={{ backgroundColor: activeExp ? "#bfe5b2" : "#dddddd" }}
                         >
                             Expenses
-                        </Button>
+                        </button>
                     </Box>
+                </Box>
+                <Box className={classes.table__wrapper}>
                     {showExpenses && (
                         <ExpenseList
                             handleSearchExpenses={handleSearchExpenses}
@@ -202,9 +192,6 @@ const App = () => {
                         <IncomeList handleSearchIncome={handleSearchIncome} />
                     )}
                 </Box>
-
-                <Box>{/* <AddExpenseForm /> */}</Box>
-                <Box>{/* <AddIncomeForm /> */}</Box>
             </Box>
         </>
     );

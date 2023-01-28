@@ -47,3 +47,35 @@
     width: 100%;
     margin-right: 2rem;
 }
+
+.table__wrapper {
+    background-color: #bfe5b2;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+}
+
+.table__header {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.table__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    background-color: #dddddd;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    padding: 1rem;
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.table__button button:hover {
+    background-color: #bfe5b2;
+}

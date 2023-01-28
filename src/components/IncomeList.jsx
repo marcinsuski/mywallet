@@ -14,8 +14,8 @@ const IncomeList = ({handleSearchIncome }) => {
     return (
         <TableContainer
         style={{
-            border: "1px solid rgb(207, 207, 207)",
-            borderRadius: "5px",
+            border: "none",
+            // borderRadius: "5px",
         }}
         >
             <Table aria-label="simple table" style={{}}>
@@ -24,7 +24,7 @@ const IncomeList = ({handleSearchIncome }) => {
                         {["Name", "Category", "Month", "Amount", " "].map(
                             (head) => (
                                 <TableCell
-                                    style={{ fontWeight: "bold" }}
+                                style={{ fontWeight: "bold", padding: '0.5rem' }}
                                     key={head}
                                     align={head === "Amount" ? "right" : "left"}
                                 >
