@@ -39,6 +39,7 @@
     min-width: 350px;
     height: 100px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: relative;
 }
 
 .budgetBox {
@@ -48,6 +49,21 @@
     width: 100%;
     margin-right: 2rem;
   
+}
+/* 
+.expenses__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+} */
+
+.expenses__box_title {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%)
 }
 
 .table__header {
@@ -85,13 +101,16 @@
 }
 
 .add__btn {
-    position: relative;
+
     width: 50px;
     height: 50px;
     border: none;
     border-radius: 50%;
     background-color: #2db400;
     transition: 200ms ease-out;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }
 .add__btn:hover {
     background-color: #1f7b00;

@@ -2,55 +2,54 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import classes from "../App.module.css";
+import DoughnutChart from "../charts/Doughnut";
 import { AppContext } from "../context/AppContext";
 import AddExpenseForm from "./AddExpenseForm";
 
-const ExpensesTotal = ({monthlyExpenses}) => {
+const ExpensesTotal = ({ monthlyExpenses }) => {
     const { expenses, month } = useContext(AppContext);
     const [showModal, setShowModal] = useState(false);
 
-    const showModalHandler = () =>  {
-      setShowModal(!showModal)
-    }
+    const showModalHandler = () => {
+        setShowModal(!showModal);
+    };
 
     useEffect(() => {
         localStorage.setItem("expenses", JSON.stringify(expenses));
-        
     }, [expenses, month]);
 
     return (
-        <div
-            className={classes.summary}
-            style={{ backgroundColor: "#AEE2F2", color: "#023B4E" }}
-        >
-            <Box className={classes.budgetBox}>
-                <span>Expenses: {monthlyExpenses} zł</span>
-                {/* Add Expenses */}
+        <>
+            <div
+                className={classes.summary}
+                style={{
+                    backgroundColor: "#ffffff",
+                    padding: "1rem",
+                    flexDirection: "column",
+                    height: "max-content",
+                    color: "#023B4E",
+                }}
+            >
+                <DoughnutChart />
+               
+                <div className={classes.expenses__box_title}>
+                    <div style={{ fontSize: "1rem" }}>Expenses:</div>{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                        {monthlyExpenses}
+                    </span>{" "}
+                    zł
+                </div>
                 <button
                     className={classes.add__btn}
                     onClick={showModalHandler}
                 ></button>
-                {/* <Button
-                    sx={{
-                        ":hover": {
-                            bgcolor: "#E30000",
-                            color: "white",
-                        },
-                        fontWeight: "bold",
-                        // width: "10rem",
-                        // padding: "0.7rem 0.5rem",
-                        backgroundColor: "#FF0000",
-                    }}
-                    variant="contained"
-                    onClick={showModalHandler}
-                >
-                    Add expense
-                </Button> */}
-            </Box>
+            </div>
             <Box>
-                   {showModal && <AddExpenseForm  showModalHandler={showModalHandler}/>}
-             </Box>
-        </div>
+                {showModal && (
+                    <AddExpenseForm showModalHandler={showModalHandler} />
+                )}
+            </Box>
+        </>
     );
 };
 

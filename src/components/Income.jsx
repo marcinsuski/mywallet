@@ -18,38 +18,28 @@ const Budget = ({ monthlyIncome }) => {
     }, [income]);
 
     return (
-        <div className={classes.summary} style={{ backgroundColor: "#E2E2E2" }}>
-            <Box className={classes.budgetBox}>
-                <Box>
-                    <span>Income: {monthlyIncome} zł</span>
+        <>
+            <div
+                className={classes.summary}
+                style={{ backgroundColor: "#E2E2E2" }}
+            >
+                <Box className={classes.budgetBox}>
+                    <Box>
+                        <span>Income: {monthlyIncome} zł</span>
+                    </Box>
+                    {/* Add income */}
+                    <button
+                        className={classes.add__btn}
+                        onClick={showModalHandler}
+                    ></button>
                 </Box>
-                {/* Add income */}
-                <button
-                    className={classes.add__btn}
-                    onClick={showModalHandler}
-                ></button>
-                {/* <Button
-                    sx={{
-                        ":hover": {
-                            bgcolor: "#18AA00",
-                            color: "white",
-                        },
-                        fontWeight: "bold",
-                        backgroundColor: "#1CCA00",
-                    }}
-                    variant="contained"
-                    onClick={showModalHandler}
-                >
-                    Add income
-                </Button> */}
-            </Box>
-
+            </div>
             <Box>
                 {showModal && (
                     <AddIncomeForm showModalHandler={showModalHandler} />
                 )}
             </Box>
-        </div>
+        </>
     );
 };
 
