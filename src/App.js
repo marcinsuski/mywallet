@@ -163,26 +163,23 @@ const App = () => {
                             className={classes.table__button}
                             type="submit"
                             onClick={showIncomeHandler}
-                            style={{ backgroundColor: activeInc ? "#bfe5b2" : "#dddddd" }}
+                            style={{ backgroundColor: activeInc ? "#baf99a" : "" }}
                         >
                             Income
                         </button>
                     </Box>
-                    {/* <Box
-                                className={classes.table__header_decorator}
-                            ></Box> */}
                     <Box>
                         <button
                             className={classes.table__button}
                             type="submit"
                             onClick={showExpensesHandler}
-                            style={{ backgroundColor: activeExp ? "#bfe5b2" : "#dddddd" }}
+                            style={{ backgroundColor: activeExp ? "#baf99a" : "" }}
                         >
                             Expenses
                         </button>
                     </Box>
                 </Box>
-                <Box className={classes.table__wrapper}>
+                <Box>
                     {showExpenses && (
                         <ExpenseList
                             handleSearchExpenses={handleSearchExpenses}

@@ -5,10 +5,10 @@ import classes from "../App.module.css";
 import { AppContext } from "../context/AppContext";
 import AddIncomeForm from "./AddIncomeForm";
 
-const Budget = ({monthlyIncome}) => {
+const Budget = ({ monthlyIncome }) => {
     const { income } = useContext(AppContext);
     const [showModal, setShowModal] = useState(false);
-  
+
     const showModalHandler = () => {
         setShowModal(!showModal);
     };
@@ -17,17 +17,18 @@ const Budget = ({monthlyIncome}) => {
         localStorage.setItem("income", JSON.stringify(income));
     }, [income]);
 
-
-
     return (
         <div className={classes.summary} style={{ backgroundColor: "#E2E2E2" }}>
             <Box className={classes.budgetBox}>
                 <Box>
                     <span>Income: {monthlyIncome} zł</span>
-           
                 </Box>
                 {/* Add income */}
-                <Button
+                <button
+                    className={classes.add__btn}
+                    onClick={showModalHandler}
+                ></button>
+                {/* <Button
                     sx={{
                         ":hover": {
                             bgcolor: "#18AA00",
@@ -40,7 +41,7 @@ const Budget = ({monthlyIncome}) => {
                     onClick={showModalHandler}
                 >
                     Add income
-                </Button>
+                </Button> */}
             </Box>
 
             <Box>

@@ -26,7 +26,11 @@ const ExpensesTotal = ({monthlyExpenses}) => {
             <Box className={classes.budgetBox}>
                 <span>Expenses: {monthlyExpenses} zł</span>
                 {/* Add Expenses */}
-                <Button
+                <button
+                    className={classes.add__btn}
+                    onClick={showModalHandler}
+                ></button>
+                {/* <Button
                     sx={{
                         ":hover": {
                             bgcolor: "#E30000",
@@ -41,7 +45,7 @@ const ExpensesTotal = ({monthlyExpenses}) => {
                     onClick={showModalHandler}
                 >
                     Add expense
-                </Button>
+                </Button> */}
             </Box>
             <Box>
                    {showModal && <AddExpenseForm  showModalHandler={showModalHandler}/>}

@@ -8,19 +8,20 @@ import {
 } from "@mui/material";
 import React from "react";
 import IncomeItem from "./IncomeItem";
+import classes from '../App.module.css';
 
 const IncomeList = ({handleSearchIncome }) => {
     
     return (
         <TableContainer
         style={{
-            border: "none",
-            // borderRadius: "5px",
+            borderRadius: "0 10px 10px 10px",
+            boxShadow:'rgba(149, 157, 165, 0.2) 0px 8px 24px'
         }}
         >
-            <Table aria-label="simple table" style={{}}>
+            <Table aria-label="simple table" style={{borderRadius: '10px'}}>
                 <TableHead>
-                    <TableRow>
+                    <TableRow style={{backgroundColor: '#baf99a'}}>
                         {["Name", "Category", "Month", "Amount", " "].map(
                             (head) => (
                                 <TableCell
@@ -34,7 +35,7 @@ const IncomeList = ({handleSearchIncome }) => {
                         )}
                     </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody  className={classes.table__wrapper}>
                     {handleSearchIncome().map((income) => {
                         return (
                             <IncomeItem
