@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import {
-
     FormControl,
     InputLabel,
     MenuItem,
@@ -31,7 +30,7 @@ const App = () => {
     const [month, setMonth] = useState(date);
     const [monthlyIncome, setMonthlyIncome] = useState(0);
     const [monthlyExpenses, setMonthlyExpenses] = useState(0);
-    const [monthlyBalance, setMonthlyBalance] = useState(0);
+    const [monthlyBalance, setMonthlyBalance] = useState('');
     const [activeExp, setActiveExp] = useState(true);
     const [activeInc, setActiveInc] = useState(false);
     const [currentItems, setCurrentItems] = useState([]);
@@ -89,12 +88,13 @@ const App = () => {
     }, [month, income]);
 
     useEffect(() => {
+        
         setMonthlyIncome(
             income
                 .map((item) =>
                     item.month === month.toLowerCase() ? item.amount : 0
                 )
-                .reduce((prev, next) => prev + next)
+                .reduce((prev, next) => prev + next, 0)
         );
 
         setMonthlyExpenses(
@@ -102,15 +102,13 @@ const App = () => {
                 .map((item) =>
                     item.month === month.toLowerCase() ? item.amount : 0
                 )
-                .reduce((prev, next) => prev + next)
+                .reduce((prev, next) => prev + next, 0)
         );
 
         setMonthlyBalance(monthlyIncome - monthlyExpenses);
     }, [month, expenses, income]);
 
-
-       let isPositive = monthlyExpenses > monthlyIncome ? "negative" : "positive";
-
+    let isPositive = monthlyExpenses > monthlyIncome ? "negative" : "positive";
 
     return (
         <Fragment>
@@ -120,20 +118,36 @@ const App = () => {
                 </h1>
                 <Box className={classes.header__summary}>
                     <div className={classes.header__summary_item}>
-                        <SavingsOutlinedIcon fontSize="large"  style={{marginBottom: '10px'}} />
-                        Income: 
-                        <span className={classes.badge}> {monthlyIncome} zł</span>
+                        <SavingsOutlinedIcon
+                            fontSize="large"
+                            style={{ marginBottom: "10px" }}
+                        />
+                        Income:
+                        <span className={classes.badge}>
+                            {" "}
+                            {monthlyIncome} zł
+                        </span>
                     </div>
                     <div className={classes.header__summary_item}>
-                        <AccountBalanceWalletOutlinedIcon fontSize="large"  style={{marginBottom: '10px'}} />
+                        <AccountBalanceWalletOutlinedIcon
+                            fontSize="large"
+                            style={{ marginBottom: "10px" }}
+                        />
                         Balance:
                         <span className={`${isPositive}`}>
                             {monthlyIncome - monthlyExpenses} zł
                         </span>
                     </div>
                     <div className={classes.header__summary_item}>
-                        <StorefrontOutlinedIcon fontSize="large" style={{marginBottom: '10px'}} />
-                        Expenses  <span className={classes.badge}> {monthlyExpenses} zł</span>
+                        <StorefrontOutlinedIcon
+                            fontSize="large"
+                            style={{ marginBottom: "10px" }}
+                        />
+                        Expenses{" "}
+                        <span className={classes.badge}>
+                            {" "}
+                            {monthlyExpenses} zł
+                        </span>
                     </div>
                 </Box>
             </Box>
@@ -177,7 +191,7 @@ const App = () => {
                                 id="month"
                                 label="month"
                                 variant="outlined"
-                                value={month}
+                                value={month.toLowerCase()}
                                 defaultValue={month}
                                 sx={{ width: "8.5rem" }}
                                 onChange={(e) => {

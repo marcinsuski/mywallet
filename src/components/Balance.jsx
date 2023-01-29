@@ -6,14 +6,6 @@ import "./Balance.css";
 const Remaining = ({ monthlyExpenses, monthlyIncome }) => {
 
 
-    // const totalExpenses = expenses.reduce((total, item) => {
-    //     return (total = total + item.amount);
-    // }, 0);
-
-    // const totalIncome = income.reduce((total, item) => {
-    //     return (total += item.amount)
-    //   }, 0)
-
     const isPositive =
         monthlyExpenses > monthlyIncome ? "negative" : "positive";
 
