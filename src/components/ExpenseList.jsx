@@ -20,13 +20,14 @@ const ExpenseList = ({ handleSearchExpenses }) => {
         >
             <Table aria-label="simple table" style={{ borderRadius: "10px" }}>
                 <TableHead>
-                    <TableRow style={{ backgroundColor: "#baf99a" }}>
+                    <TableRow style={{ backgroundColor: "#0022a8" }}>
                         {["Name", "Category", "Month", "Amount", " "].map(
                             (head) => (
                                 <TableCell
                                     style={{
                                         fontWeight: "bold",
                                         padding: "0.5rem",
+                                        color: 'white'
                                     }}
                                     key={head}
                                     align={head === "Amount" ? "right" : "left"}

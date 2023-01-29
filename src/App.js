@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import {
-    Button,
+
     FormControl,
     InputLabel,
     MenuItem,
@@ -10,13 +10,14 @@ import {
 import { Box } from "@mui/system";
 import ExpensesTotal from "./components/ExpensesTotal";
 import ExpenseList from "./components/ExpenseList";
-import AddExpenseForm from "./components/AddExpenseForm";
 import { AppContext } from "./context/AppContext";
 import classes from "./App.module.css";
-import AddIncomeForm from "./components/AddIncomeForm";
+import "./components/Balance.css";
 import IncomeList from "./components/IncomeList";
 import Income from "./components/Income";
-import Balance from "./components/Balance";
+import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
+import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 
 const App = () => {
     // prettier-ignore
@@ -28,12 +29,15 @@ const App = () => {
     const [showExpenses, setShowExpenses] = useState(true);
     const [search, setSearch] = useState("");
     const [month, setMonth] = useState(date);
-    const { expenses, income } = useContext(AppContext);
     const [monthlyIncome, setMonthlyIncome] = useState(0);
     const [monthlyExpenses, setMonthlyExpenses] = useState(0);
     const [monthlyBalance, setMonthlyBalance] = useState(0);
     const [activeExp, setActiveExp] = useState(true);
     const [activeInc, setActiveInc] = useState(false);
+    const [currentItems, setCurrentItems] = useState([]);
+    const [currentIncomeItems, setCurrentIncomeItems] = useState([]);
+
+    const { expenses, income } = useContext(AppContext);
 
     const handleSearchExpenses = () => {
         return expenses.filter(
@@ -69,6 +73,22 @@ const App = () => {
     };
 
     useEffect(() => {
+        let currentExpenses = expenses.filter((item) =>
+            item.month === month.toLowerCase() ? item : null
+        );
+        setCurrentItems(currentExpenses);
+        // console.log(currentExpenses)
+        console.log(month);
+    }, [month, expenses]);
+
+    useEffect(() => {
+        let currentIncome = income.filter((item) =>
+            item.month === month.toLowerCase() ? item : null
+        );
+        setCurrentIncomeItems(currentIncome);
+    }, [month, income]);
+
+    useEffect(() => {
         setMonthlyIncome(
             income
                 .map((item) =>
@@ -86,25 +106,57 @@ const App = () => {
         );
 
         setMonthlyBalance(monthlyIncome - monthlyExpenses);
-    }, [month]);
+    }, [month, expenses, income]);
+
+
+       let isPositive = monthlyExpenses > monthlyIncome ? "negative" : "positive";
+
 
     return (
-        <>
+        <Fragment>
+            <Box className={classes.header}>
+                <h1 style={{ margin: "1rem 0", fontSize: "3rem" }}>
+                    My Wallet
+                </h1>
+                <Box className={classes.header__summary}>
+                    <div className={classes.header__summary_item}>
+                        <SavingsOutlinedIcon fontSize="large"  style={{marginBottom: '10px'}} />
+                        Income: 
+                        <span className={classes.badge}> {monthlyIncome} zł</span>
+                    </div>
+                    <div className={classes.header__summary_item}>
+                        <AccountBalanceWalletOutlinedIcon fontSize="large"  style={{marginBottom: '10px'}} />
+                        Balance:
+                        <span className={`${isPositive}`}>
+                            {monthlyIncome - monthlyExpenses} zł
+                        </span>
+                    </div>
+                    <div className={classes.header__summary_item}>
+                        <StorefrontOutlinedIcon fontSize="large" style={{marginBottom: '10px'}} />
+                        Expenses  <span className={classes.badge}> {monthlyExpenses} zł</span>
+                    </div>
+                </Box>
+            </Box>
+            <Box className={classes.header1}></Box>
+            <Box className={classes.header2}></Box>
             <Box>
                 <Box className={classes.container}>
-                    <h1 style={{ margin: "1rem 0", fontSize: "3rem" }}>
-                        My Wallet
-                    </h1>
-
                     {/* summaries */}
                     <Box className={classes.summaryWrapper}>
                         {/* <Budget /> */}
-                        <Income monthlyIncome={monthlyIncome} />
-                        <Balance
+                        <Income
+                            monthlyIncome={monthlyIncome}
+                            currentIncomeItems={currentIncomeItems}
+                        />
+                        {/* <Balance
                             monthlyIncome={monthlyIncome}
                             monthlyExpenses={monthlyExpenses}
+                            currentItems={currentItems}
+                        /> */}
+                        <ExpensesTotal
+                            monthlyExpenses={monthlyExpenses}
+                            currentItems={currentItems}
                         />
-                        <ExpensesTotal monthlyExpenses={monthlyExpenses} />
                     </Box>
                 </Box>
                 {/* expenses */}
@@ -163,7 +215,10 @@ const App = () => {
                             className={classes.table__button}
                             type="submit"
                             onClick={showIncomeHandler}
-                            style={{ backgroundColor: activeInc ? "#baf99a" : "" }}
+                            style={{
+                                backgroundColor: activeInc ? "#0022a8" : "",
+                                color: activeInc ? "white" : "",
+                            }}
                         >
                             Income
                         </button>
@@ -173,7 +228,10 @@ const App = () => {
                             className={classes.table__button}
                             type="submit"
                             onClick={showExpensesHandler}
-                            style={{ backgroundColor: activeExp ? "#baf99a" : "" }}
+                            style={{
+                                backgroundColor: activeExp ? "#0022a8" : "",
+                                color: activeExp ? "white" : "",
+                            }}
                         >
                             Expenses
                         </button>
@@ -190,7 +248,7 @@ const App = () => {
                     )}
                 </Box>
             </Box>
-        </>
+        </Fragment>
     );
 };
 

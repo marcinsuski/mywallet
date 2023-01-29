@@ -1,12 +1,11 @@
-import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import classes from "../App.module.css";
-import DoughnutChart from "../charts/Doughnut";
+import DoughnutChart from "../charts/DoughnutExpenses";
 import { AppContext } from "../context/AppContext";
 import AddExpenseForm from "./AddExpenseForm";
 
-const ExpensesTotal = ({ monthlyExpenses }) => {
+const ExpensesTotal = ({ monthlyExpenses, currentItems }) => {
     const { expenses, month } = useContext(AppContext);
     const [showModal, setShowModal] = useState(false);
 
@@ -30,8 +29,8 @@ const ExpensesTotal = ({ monthlyExpenses }) => {
                     color: "#023B4E",
                 }}
             >
-                <DoughnutChart />
-               
+                <DoughnutChart currentItems={currentItems} />
+
                 <div className={classes.expenses__box_title}>
                     <div style={{ fontSize: "1rem" }}>Expenses:</div>{" "}
                     <span style={{ fontWeight: "bold" }}>
@@ -40,7 +39,7 @@ const ExpensesTotal = ({ monthlyExpenses }) => {
                     zł
                 </div>
                 <button
-                    className={classes.add__btn}
+                    className={classes.add__btn + " " + classes.red}
                     onClick={showModalHandler}
                 ></button>
             </div>

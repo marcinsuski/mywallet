@@ -1,22 +1,22 @@
-.summary {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    padding-left: 2rem;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 350px;
-    height: 100px;
-}
 
 .positive {
-    background-color: #BFE5B2;
-    color: #006404;
+    margin-top: 3px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: rgb(14, 211, 0);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
 }
 
 .negative {
-    background-color: #FFBFBF;
-    color: #6F0000;
+    margin-top: 3px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: rgb(211, 0, 0);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
 }
+
 

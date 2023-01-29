@@ -2,11 +2,12 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import classes from "../App.module.css";
+import DoughnutIncome from "../charts/DoughnutIncome";
 import { AppContext } from "../context/AppContext";
 import AddIncomeForm from "./AddIncomeForm";
 
-const Budget = ({ monthlyIncome }) => {
-    const { income } = useContext(AppContext);
+const Budget = ({ monthlyIncome, currentIncomeItems }) => {
+    const { income, month } = useContext(AppContext);
     const [showModal, setShowModal] = useState(false);
 
     const showModalHandler = () => {
@@ -15,19 +16,29 @@ const Budget = ({ monthlyIncome }) => {
 
     useEffect(() => {
         localStorage.setItem("income", JSON.stringify(income));
-    }, [income]);
+    }, [income, month]);
 
     return (
         <>
             <div
                 className={classes.summary}
-                style={{ backgroundColor: "#E2E2E2" }}
+                style={{
+                    backgroundColor: "#ffffff",
+                    padding: "1rem",
+                    flexDirection: "column",
+                    height: "max-content",
+                    color: "#023B4E",
+                }}
             >
+                <DoughnutIncome currentIncomeItems={currentIncomeItems} />
                 <Box className={classes.budgetBox}>
-                    <Box>
-                        <span>Income: {monthlyIncome} zł</span>
-                    </Box>
-                    {/* Add income */}
+                    <div className={classes.expenses__box_title}>
+                        <div style={{ fontSize: "1rem" }}>Income:</div>{" "}
+                        <span style={{ fontWeight: "bold" }}>
+                            {monthlyIncome}
+                        </span>{" "}
+                        zł
+                    </div>
                     <button
                         className={classes.add__btn}
                         onClick={showModalHandler}

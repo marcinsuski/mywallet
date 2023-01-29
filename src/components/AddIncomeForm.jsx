@@ -19,7 +19,7 @@ const AddIncomeForm = ({ showModalHandler }) => {
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("");
     const [month, setMonth] = useState("");
-    const { dispatch, income } = useContext(AppContext);
+    const { dispatch } = useContext(AppContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -39,9 +39,7 @@ const AddIncomeForm = ({ showModalHandler }) => {
         showModalHandler();
     };
 
-    useEffect(() => {
-        localStorage.setItem("income", JSON.stringify(income));
-    }, [income]);
+
 
     return (
         <>

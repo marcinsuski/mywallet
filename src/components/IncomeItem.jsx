@@ -28,7 +28,8 @@ const IncomeItem = ({ id, name, category, amount, month }) => {
                     alignItems: "center",
                     justifyContent: "flex-end",
                     padding: '0.5rem',
-                    lineHeight: '1.8rem'
+                    lineHeight: '1.8rem',
+                    color: '#1ca600',
                 }}
             >               
                 {amount} zł
@@ -44,7 +45,7 @@ const IncomeItem = ({ id, name, category, amount, month }) => {
                     }}
                 >
                     <DeleteForeverOutlinedIcon
-                        color="error"
+                        color="black"
                         onClick={handleDeleteIncome}
                     />
                 </Icon>

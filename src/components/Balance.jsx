@@ -1,10 +1,10 @@
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
-import './Balance.css';
-import { AppContext } from "../context/AppContext";
+import React from "react";
+import "./Balance.css";
 
-const Remaining = ({monthlyExpenses, monthlyIncome }) => {
-    const { expenses, income } = useContext(AppContext);
+
+const Remaining = ({ monthlyExpenses, monthlyIncome }) => {
+
 
     // const totalExpenses = expenses.reduce((total, item) => {
     //     return (total = total + item.amount);
@@ -14,10 +14,15 @@ const Remaining = ({monthlyExpenses, monthlyIncome }) => {
     //     return (total += item.amount)
     //   }, 0)
 
-    const isPositive = monthlyExpenses > monthlyIncome ? 'negative' : 'positive';
+    const isPositive =
+        monthlyExpenses > monthlyIncome ? "negative" : "positive";
 
     return (
-        <Box className={`summary ${isPositive}`} style={{    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'}}>
+        <Box
+            className={`summary ${isPositive}`}
+            style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+        >
+                 
             <span>Balance: {monthlyIncome - monthlyExpenses} zł</span>
         </Box>
     );

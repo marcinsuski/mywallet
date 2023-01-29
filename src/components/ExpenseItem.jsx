@@ -27,10 +27,11 @@ const ExpenseItem = ({ id, name, category, amount, month }) => {
                     alignItems: "center",
                     justifyContent: "flex-end",
                     padding: '0.5rem',
-                    lineHeight: '1.8rem'
+                    lineHeight: '1.8rem',
+                    color: 'red',
                 }}
             >               
-                {amount} zł
+                -{amount} zł
             </TableCell>
             <TableCell style={{ width: "50px", padding: " 0.5rem" }}>
                 <Icon
@@ -43,7 +44,7 @@ const ExpenseItem = ({ id, name, category, amount, month }) => {
                     }}
                 >
                     <DeleteForeverOutlinedIcon
-                        color="error"
+                        color="black"
                         onClick={handleDeleteExpense}
                     />
                 </Icon>

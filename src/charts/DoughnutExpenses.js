@@ -7,60 +7,35 @@ import {
     Colors,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { AppContext } from "../context/AppContext";
-import { MonitorHeartOutlined } from "@mui/icons-material";
 
-const DoughnutChart = () => { 
-    const { expenses, income, month } = useContext(AppContext);
+const DoughnutChart = ({ currentItems }) => {
     ChartJS.register(ArcElement, Tooltip, Legend, Colors);
-    const [currentItems, setCurrentItems] = useState([]);
 
-    useEffect(() => {
-        let currentExpenses = expenses.map((item) =>
-        item.month === month.toLowerCase() ? item : ''
-        );
-        setCurrentItems(currentExpenses)
-        console.log(currentExpenses)
-    
-    }, [month])
-   
     const data = {
-        labels: expenses.map(expense => {return expense.category}),
-    
-
-        // {handleSearchExpenses().map((expense) => {
-        //     return (
-        //         <ExpenseItem
-        //             key={expense.id}
-        //             id={expense.id}
-        //             name={expense.name}
-        //             amount={expense.amount}
-        //             category={expense.category}
-        //             month={expense.month}
-        //         />
-        //     );
-        // })}
-
-
+        labels: currentItems.map((expense) => {
+            return expense.category;
+        }),
 
         datasets: [
             {
-                data: currentItems.map(expense => {return expense.amount}),
+                data: currentItems.map((expense) => {
+                    return expense.amount;
+                }),
                 backgroundColor: [
-                    "#FF0000",
-                    "#FF6B00",
-                    "#FFE600",
-                    "#9EFF00",
-                    "#1F9A00",
-                    "#00E8DA",
-                    "#A5A5A5",
                     "#000AFF",
-                    "#7300A9",
-                    "#FA00FF",
                     "#FF0000",
-                    "#000000",
-                    "#790000",
+                    "#9EFF00",
+                    "#7300A9",
                     "#020053",
+                    "#FA00FF",
+                    "#1F9A00",
+                    "#A5A5A5",
+                    "#790000",
+                    "#00E8DA",
+                    "#FF6B00",
+                    "#000000",
+                    "#FFE600",
+                    "#FF0000",
                     "#7D2600",
                 ],
                 borderWidth: 2,
