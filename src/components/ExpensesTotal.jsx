@@ -30,7 +30,6 @@ const ExpensesTotal = ({ monthlyExpenses, currentItems }) => {
                 }}
             >
                 <DoughnutChart currentItems={currentItems} />
-
                 <div className={classes.expenses__box_title}>
                     <div style={{ fontSize: "1rem" }}>Expenses:</div>{" "}
                     <span style={{ fontWeight: "bold" }}>
