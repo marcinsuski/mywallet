@@ -12,6 +12,7 @@ User can add income and/or expenses from a list of provided categories. Both inc
 ## 📦 Tech stack:
 - React
 - MUI + CSS Modules
+- useReducer (state management)
 - Chart.JS
  
 ## ⚙ TODO
