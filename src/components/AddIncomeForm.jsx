@@ -39,8 +39,6 @@ const AddIncomeForm = ({ showModalHandler }) => {
         showModalHandler();
     };
 
-
-
     return (
         <>
             <Box
@@ -133,20 +131,18 @@ const AddIncomeForm = ({ showModalHandler }) => {
                             setMonth(e.target.value);
                         }}
                     >
-                               <MenuItem value={"january"}>january</MenuItem>
-                                <MenuItem value={"february"}>february</MenuItem>
-                                <MenuItem value={"march"}>march</MenuItem>
-                                <MenuItem value={"april"}>april</MenuItem>
-                                <MenuItem value={"may"}>may</MenuItem>
-                                <MenuItem value={"june"}>june</MenuItem>
-                                <MenuItem value={"july"}>july</MenuItem>
-                                <MenuItem value={"august"}>august</MenuItem>
-                                <MenuItem value={"september"}>
-                                    september
-                                </MenuItem>
-                                <MenuItem value={"october"}>october</MenuItem>
-                                <MenuItem value={"november"}>november</MenuItem>
-                                <MenuItem value={"december"}>december</MenuItem>
+                        <MenuItem value={"january"}>january</MenuItem>
+                        <MenuItem value={"february"}>february</MenuItem>
+                        <MenuItem value={"march"}>march</MenuItem>
+                        <MenuItem value={"april"}>april</MenuItem>
+                        <MenuItem value={"may"}>may</MenuItem>
+                        <MenuItem value={"june"}>june</MenuItem>
+                        <MenuItem value={"july"}>july</MenuItem>
+                        <MenuItem value={"august"}>august</MenuItem>
+                        <MenuItem value={"september"}>september</MenuItem>
+                        <MenuItem value={"october"}>october</MenuItem>
+                        <MenuItem value={"november"}>november</MenuItem>
+                        <MenuItem value={"december"}>december</MenuItem>
                     </Select>
                 </FormControl>
 

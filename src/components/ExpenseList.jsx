@@ -8,14 +8,14 @@ import {
 } from "@mui/material";
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
-import classes from '../App.module.css';
+import classes from "../App.module.css";
 
 const ExpenseList = ({ handleSearchExpenses }) => {
     return (
         <TableContainer
             style={{
                 borderRadius: "0 0 10px 10px",
-                boxShadow:'rgba(149, 157, 165, 0.2) 0px 8px 24px'
+                boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
             }}
         >
             <Table aria-label="simple table" style={{ borderRadius: "10px" }}>
@@ -27,7 +27,7 @@ const ExpenseList = ({ handleSearchExpenses }) => {
                                     style={{
                                         fontWeight: "bold",
                                         padding: "0.5rem",
-                                        color: 'white'
+                                        color: "white",
                                     }}
                                     key={head}
                                     align={head === "Amount" ? "right" : "left"}
@@ -38,7 +38,7 @@ const ExpenseList = ({ handleSearchExpenses }) => {
                         )}
                     </TableRow>
                 </TableHead>
-                <TableBody  className={classes.table__wrapper}>
+                <TableBody className={classes.table__wrapper}>
                     {handleSearchExpenses().map((expense) => {
                         return (
                             <ExpenseItem

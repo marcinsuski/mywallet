@@ -7,7 +7,6 @@ import { Icon, TableCell, TableRow } from "@mui/material";
 const IncomeItem = ({ id, name, category, amount, month }) => {
     const { dispatch } = useContext(AppContext);
 
-    
     const handleDeleteIncome = () => {
         dispatch({
             type: "DELETE_INCOME",
@@ -15,23 +14,22 @@ const IncomeItem = ({ id, name, category, amount, month }) => {
         });
     };
 
-    
-
     return (
         <TableRow>
             <TableCell style={{ padding: "0.5rem" }}>{name}</TableCell>
             <TableCell style={{ padding: "0.5rem" }}>{category}</TableCell>
             <TableCell style={{ padding: "0.5rem" }}>{month}</TableCell>
-            <TableCell  className={classes.badge}
+            <TableCell
+                className={classes.badge}
                 style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-end",
-                    padding: '0.5rem',
-                    lineHeight: '1.8rem',
-                    color: '#1ca600',
+                    padding: "0.5rem",
+                    lineHeight: "1.8rem",
+                    color: "#1ca600",
                 }}
-            >               
+            >
                 {amount} zł
             </TableCell>
             <TableCell style={{ width: "50px", padding: " 0.5rem" }}>
@@ -41,7 +39,7 @@ const IncomeItem = ({ id, name, category, amount, month }) => {
                         marginRight: "0.5rem",
                         border: "none",
                         cursor: "pointer",
-                        backgroundColor: 'transparent'
+                        backgroundColor: "transparent",
                     }}
                 >
                     <DeleteForeverOutlinedIcon

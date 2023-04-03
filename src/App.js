@@ -30,7 +30,7 @@ const App = () => {
     const [month, setMonth] = useState(date);
     const [monthlyIncome, setMonthlyIncome] = useState(0);
     const [monthlyExpenses, setMonthlyExpenses] = useState(0);
-    const [monthlyBalance, setMonthlyBalance] = useState('');
+    const [monthlyBalance, setMonthlyBalance] = useState("");
     const [activeExp, setActiveExp] = useState(true);
     const [activeInc, setActiveInc] = useState(false);
     const [currentItems, setCurrentItems] = useState([]);
@@ -88,7 +88,6 @@ const App = () => {
     }, [month, income]);
 
     useEffect(() => {
-        
         setMonthlyIncome(
             income
                 .map((item) =>
