@@ -27,7 +27,7 @@ const IncomeList = ({ handleSearchIncome }) => {
                                     style={{
                                         fontWeight: "bold",
                                         padding: "0.5rem",
-                                        color: "white",
+                                        color: "#FFFFFF",
                                     }}
                                     key={head}
                                     align={head === "Amount" ? "right" : "left"}

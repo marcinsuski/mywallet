@@ -151,7 +151,7 @@ const AddIncomeForm = ({ showModalHandler }) => {
                     sx={{
                         ":hover": {
                             bgcolor: "#1F41BC",
-                            color: "white",
+                            color: "#FFFFFF",
                         },
                         fontWeight: "bold",
                         width: "6rem",

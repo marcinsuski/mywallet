@@ -43,7 +43,7 @@ const ExpenseItem = ({ id, name, category, amount, month }) => {
                     }}
                 >
                     <DeleteForeverOutlinedIcon
-                        color="black"
+                        color="#000000"
                         onClick={handleDeleteExpense}
                     />
                 </Icon>
