@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import classes from "./IncomeItem.module.css";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../context/AppContext.jsx";
 import { Icon, TableCell, TableRow } from "@mui/material";
 
 const IncomeItem = ({ id, name, category, amount, month }) => {

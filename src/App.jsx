@@ -9,7 +9,7 @@ import {
 import { Box } from "@mui/system";
 import ExpensesTotal from "./components/ExpensesTotal";
 import ExpenseList from "./components/ExpenseList";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "./context/AppContext.jsx";
 import classes from "./App.module.css";
 import "./components/Balance.css";
 import IncomeList from "./components/IncomeList";

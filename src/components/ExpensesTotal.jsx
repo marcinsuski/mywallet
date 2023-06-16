@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import classes from "../App.module.css";
 import DoughnutChart from "../charts/DoughnutExpenses";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../context/AppContext.jsx";
 import AddExpenseForm from "./AddExpenseForm";
 
 const ExpensesTotal = ({ monthlyExpenses, currentItems }) => {

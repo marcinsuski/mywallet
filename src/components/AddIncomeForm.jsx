@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import { v4 as uuidv4 } from "uuid";
 import classes from "./AddExpenseForm.module.css";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../context/AppContext.jsx";
 
 const AddIncomeForm = ({ showModalHandler }) => {
     const [name, setName] = useState("");

@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import classes from "../App.module.css";
 import DoughnutIncome from "../charts/DoughnutIncome";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../context/AppContext.jsx";
 import AddIncomeForm from "./AddIncomeForm";
 
 const Budget = ({ monthlyIncome, currentIncomeItems }) => {
